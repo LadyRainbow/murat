@@ -1,0 +1,23 @@
+.footer-top {
+    padding-top: 79px;
+    padding-bottom: 51px;
+    background-color: #434343;
+}
+.footer-list {
+    display: flex;
+    li {
+        img {
+            width: 24px;
+        }
+        & + li {
+            margin-left: 24px;
+        }
+        a {
+            &:hover {
+                img {
+                    filter: brightness(0) saturate(100%) invert(100%) sepia(44%) saturate(2%) hue-rotate(194deg) brightness(109%) contrast(101%);
+                }
+            }
+        }
+    }
+}
