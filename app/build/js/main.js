@@ -90,7 +90,6 @@ $(document).ready(function () {
 
     // slider partner
     $('.partner-slider').slick({
-        // autoplay: true,
         infinite: false,
         slidesToShow: 2,
         slidesToScroll: 1,
@@ -108,22 +107,55 @@ $(document).ready(function () {
             },
         ]
     });
+    // slider partner Page Partner
+    $('.general-partner-slider').slick({
+        infinite: false,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        prevArrow: $('.prev-part2-arrow'),
+        nextArrow: $('.next-part2-arrow'),
+        dots: false,
+        responsive: [
+            {
+              breakpoint: 992,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                arrows: false
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false
+              }
+            },
+        ]
+    });
 
     // fancybox
    var selector = '.main-slider .slick-slide:not(.slick-cloned) .fancy-link';
    var selectorCert = '.cert__slider .slick-slide:not(.slick-cloned) .fancy-link';
+   var selectorPart = '.general-partner-slider .slick-slide:not(.slick-cloned) .fancy-link';
 
    // Skip cloned elements
-   $().fancybox({
+    $().fancybox({
        selector : selector,
        hash: false,
        backFocus : false,
-   });
-   $().fancybox({
+    });
+    $().fancybox({
        selector : selectorCert,
        hash: false,
        backFocus : false,
-   });
+    });
+    $().fancybox({
+       selector : selectorPart,
+       hash: false,
+       backFocus : false,
+    });
 
    // form checked
     $('.checkbox-check').change(function() {
@@ -179,6 +211,19 @@ $(document).ready(function () {
         $(this).closest('.benefits-info').css('transform', 'translateY(' + heightText + 'px)')
     });
 
+   // partners page
+    if($('.partners-page-content .col-12').length > 9) {
+       $('.show-partn-btn').addClass('active');
+    };
+    $('.show-partn-btn').click(function () {
+        $('.partners-page-content .col-12').addClass('active');
+        $(this).fadeOut();
+    });
+    // go back
+    $('.back-arrow').click(function(){
+        window.history.back();
+    });
+
     // docs page
     if(windowWidth > 767) {
         $('.docs-page-list li').click(function (e) {
@@ -200,8 +245,62 @@ $(document).ready(function () {
             $(this).closest('.docs-page-list').find('li').removeClass('active');
             $(this).addClass('active');
         });
-    }
+    };
 
+    // news page
+     if($('.news-page-content .col-12').length > 9) {
+        $('.show-news-btn').addClass('active');
+     };
+     $('.show-news-btn').click(function () {
+         $('.news-page-content .col-12').addClass('active');
+         $(this).fadeOut();
+     });
+
+     // article page
+     $('.article-slider').slick({
+         infinite: true,
+         slidesToShow: 3,
+         slidesToScroll: 1,
+         prevArrow: $('.prev-article-arrow'),
+         nextArrow: $('.next-article-arrow'),
+         dots: false,
+         responsive: [
+             {
+               breakpoint: 992,
+               settings: {
+                 slidesToShow: 2,
+                 slidesToScroll: 1,
+                 arrows: false
+               }
+             },
+             {
+               breakpoint: 768,
+               settings: {
+                 slidesToShow: 1,
+                 slidesToScroll: 1,
+                 arrows: false
+               }
+             },
+         ]
+     });
+
+     // vip page
+    $('.up-down').click(function () {
+        if($(this).find('.up').hasClass('active')) {
+            $(this).find('.up').removeClass('active');
+            $(this).find('.down').addClass('active');
+        } else {
+            $(this).find('.down').removeClass('active');
+            $(this).find('.up').addClass('active');
+        }
+    });
+
+    // $('.select-simple').selectize();
+    //
+    // $('.vip-table tbody tr').each(function(i) {
+    //     var number = i + 1;
+    //     $(this).find('td:first .table-row').text("#" + number);
+    // });
 
 
     // tabs
@@ -241,23 +340,6 @@ $(document).ready(function () {
         }, 200);
     });
 
-
-    // soft scroll
-    $(".scrollTo").on("click", function (event) {
-        // исключаем стандартную реакцию браузера
-        event.preventDefault();
-        var id  = $(this).attr('href');
-        var top = $(id).offset().top;
-        // анимируем переход к блоку, время: 800 мс
-        $('body,html').animate({scrollTop: top}, 500);
-        // находим высоту, на которой расположен блок
-    });
-
-
-
-
-
-
     // only number
     $(".input-number").keypress(function(event){
       event = event || window.event;
@@ -266,23 +348,14 @@ $(document).ready(function () {
     });
 
 
-
-    var flag = 0;
-    $('.show-tarif').click(function () {
-        $(this).closest('.card-bank').toggleClass('show');
-        if (flag === 0) {
-            $(this).html('Свернуть');
-            $(this).addClass('show');
-            flag = 1;
-        } else {
-            $(this).html('Еще 3 тарифа');
-            $(this).removeClass('show');
-            flag = 0;
-        }
-    });
-
     // masked
     $('.mask-phone').mask('+999999?9999999999', {placeholder:""});
+
+    // contacts page
+    $('.map-link li').each(function (index, value) {
+        $(this).attr('data-id', '' + index + '');
+    });
+
 
 
 
@@ -295,15 +368,11 @@ $(document).ready(function () {
         $popUpGeneralBlock.removeClass('active');
         $('#thnx').addClass('active');
     };
-    $('.open-pop-up-mob').click(function (e) {
-        e.preventDefault();
-        $('.menu-content').removeClass('active');
-        $('.btn-menu-close').removeClass('active');
-        setTimeout(function () {
-            $('.menu').removeClass('active');
-            $('body').removeClass('active');
-        }, 200);
-        thnx ();
+    $('.open-pop-up').click(function (e) {
+        $overlayPopUpWRP.addClass('active');
+        $('body, html').addClass('active');
+        $popUpGeneralBlock.removeClass('active');
+        $('#formPopUp').addClass('active');
     });
 
 
@@ -316,5 +385,26 @@ $(document).ready(function () {
         $overlayPopUpWRP.removeClass('active');
         $('body, html').removeClass('active');
         $popUpGeneralBlock.removeClass('active');
+    });
+
+    $('.pro-tabs-btn li').click(function () {
+        $('.pro-tabs-btn li').removeClass('active');
+        $(this).addClass('active');
+        var $idTabBody = $(this).attr('data-tab');
+        $('.prog-tabs-body').removeClass('active');
+        $('#' + $idTabBody + '.prog-tabs-body').addClass('active');
+    });
+
+    $('.new-prog-screen-btn').click(function () {
+        var $idTabBody = $(this).closest('.new-prog-block').attr('data-tab');
+        $('.pro-tabs-btn li').removeClass('active');
+        $('.pro-tabs-btn li[data-tab|="'+ $idTabBody + '"]').addClass('active');
+        $('.prog-tabs-body').removeClass('active');
+        $('#' + $idTabBody + '.prog-tabs-body').addClass('active');
+
+        $overlayPopUpWRP.addClass('active');
+        $('body, html').addClass('active');
+        $popUpGeneralBlock.removeClass('active');
+        $('#progPopUp').addClass('active');
     });
 });

@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://rawgit.com/meetselva/fixed-table-rows-cols/master/css/fixed_table_rc.css" />
     <link rel="stylesheet" href="../../build/css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="../../build/css/selectize.css">
     <link rel="stylesheet" href="../../build/css/bootstrap.css">
@@ -45,6 +46,7 @@
             <ul class="header-bottom">
                 <li class="active"><a href="#">Главная</a></li>
                 <li><a href="#">Займы</a></li>
+                <li><a href="#">VIP</a></li>
                 <li><a href="#">Сбережения</a></li>
                 <li><a href="#">Отзывы</a></li>
                 <li><a href="#">О компании</a></li>
@@ -357,101 +359,223 @@
         </div>
         <div class="pop-up-overlay-wrapper">
             <div class="overlay-pop-up"></div>
-            <div id="enter" class="pop-up-general-block">
-    <div class="pop-up-general-block-content">
-        <div class="pop-up-side left">
-            <p class="popup-title">ВОЙТИ</p>
-            <form id="valid" action="#">
-                <div class="input-style">
-                    <p class="input-title">Введите свой email *</p>
-                    <input class="pop-up-input input-valid" type="email" data-input="email" name="email" value="">
-                    <div class="input-error-plashka">
-                        <p class="input-error-title">Ошибка!</p>
-                        <p class="input-error">Ошибка ввода</p>
-                    </div>
-                </div>
-                <div class="input-style">
-                    <p class="input-title">Пароль *</p>
-                    <input class="pop-up-input input-valid password" type="password" data-input="password" name="password" value="">
-                    <div class="input-error-plashka">
-                        <p class="input-error-title">Ошибка!</p>
-                        <p class="input-error">Ошибка ввода</p>
-                    </div>
-                    <div class="show-pass">
-                        <img src="../../build/img/eye.svg" alt="">
-                    </div>
-                </div>
-                <input class="popup-btn" type="submit" name="" value="Войти">
-                <label class="checkbox">
-                	<input type="checkbox" />
-                	<div class="checkbox__text">Запомнить меня</div>
-                </label>
-                <a href="#" class="forgot">Забыли свой пароль?</a>
-            </form>
+            <div id="formPopUp" class="pop-up-general-block">
+    <h2>Узнайте о подробных условиях сбережений, а также как мы обеспечиваем сохранность ваших средств</h2>
+    <p>Заполните форму – наш специалист свяжется с вами в ближайшее время</p>
+    <form id="validPop" action="#">
+        <div class="input-style">
+            <input class="input-form input-valid" type="text" data-input="name" name="name" placeholder="Имя*">
+            <p class="input-error">Ошибка ввода</p>
         </div>
-        <div class="pop-up-side right">
-            <p class="popup-title">РЕГИСТРАЦИЯ</p>
-            <form id="valid2" action="#">
-                <div class="input-style">
-                    <p class="input-title">Email *</p>
-                    <input class="pop-up-input input-valid" type="email" data-input="email" name="email" value="">
-                    <div class="input-error-plashka">
-                        <p class="input-error-title">Ошибка!</p>
-                        <p class="input-error">Ошибка ввода</p>
-                    </div>
-                </div>
-                <input class="popup-btn" type="submit" name="" value="Регистрация">
-            </form>
+        <div class="input-style">
+            <input class="input-form input-valid mask-phone" type="tel" data-input="phone" name="phone" placeholder="Номер телефона*">
+            <p class="input-error">Ошибка ввода</p>
         </div>
+        <label class="checkbox">
+            <input class="checkbox-check" type="checkbox">
+            <div class="checkbox__text">Я согласен с <a href="/policy"> политиками конфиденциальности</a></div>
+        </label>
+        <input class="form-btn btn-checkbox btn-checkbox-disabled" type="submit" name="" value="Отправить заявку">
+    </form>
+    <div class="pop-up-general-block-close-btn"></div>
+</div>
+
+<div id="progPopUp" class="pop-up-general-block pop-up-general-block-new">
+    <h2>Полные условия сберегательных программ</h2>
+    <ul class="pro-tabs-btn">
+        <li class="active" data-tab="pens">Пенсионная</li>
+        <li data-tab="nakopi">Накопительная</li>
+        <li data-tab="dohod">Доходная</li>
+    </ul>
+    <div class="prog-tabs-body-wrp">
+        <div id="pens" class="prog-tabs-body active">
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                      <tr><th>Сумма</th>
+                      <th>от 6 мес.<br>до 1 года</th>
+                      <th>от 1 года<br>до 2 лет</th>
+                      <th>от 2 года<br>до 3 лет</th>
+                    </tr></thead>
+                    <tbody>
+                      <tr>
+                        <td>от 50 000 ₽</td>
+                        <td>10.5%</td>
+                        <td>10.5%</td>
+                        <td>10.5%</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table>
+                <thead>
+                  <tr><th colspan="2">Условия программы</th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Выплата процентов</td>
+                    <td>ежемесячно, либо в конце срока</td>
+                  </tr>
+                  <tr>
+                    <td>Пополнение</td>
+                    <td>да, от 50 000 ₽</td>
+                  </tr>
+                  <tr>
+                    <td>Капитализация</td>
+                    <td>да, в конце срока</td>
+                  </tr>
+                  <tr>
+                    <td>Частичное снятие</td>
+                    <td>да, до 25% без потери ставки</td>
+                  </tr>
+                  <tr>
+                    <td>Досрочное расторжение</td>
+                    <td>да, по ставке 0.1%</td>
+                  </tr>
+                  <tr>
+                    <td>Примечание</td>
+                    <td>при достижении суммы по договору 500 000 руб. программа переходит в статус «Накопительная»</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="nakopi" class="prog-tabs-body">
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                      <tr><th>Сумма</th>
+                      <th>от 6 мес.<br>до 1 года</th>
+                      <th>от 1 года<br>до 2 лет</th>
+                      <th>от 2 года<br>до 3 лет</th>
+                    </tr></thead>
+                    <tbody>
+                      <tr>
+                        <td>от 500 000 ₽</td>
+                        <td>12.5%</td>
+                        <td>13%</td>
+                        <td>13.5%</td>
+                      </tr>
+                      <tr>
+                        <td>от 1 000 000 ₽</td>
+                        <td>13.5%</td>
+                        <td>14%</td>
+                        <td>14.5%</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table>
+                <thead>
+                  <tr><th colspan="2">Условия программы</th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Выплата процентов</td>
+                    <td>ежемесячно, либо в конце срока</td>
+                  </tr>
+                  <tr>
+                    <td>Пополнение</td>
+                    <td>да, от 500 000 ₽</td>
+                  </tr>
+                  <tr>
+                    <td>Капитализация</td>
+                    <td>да, в конце срока</td>
+                  </tr>
+                  <tr>
+                    <td>Досрочное расторжение</td>
+                    <td>да, по ставке 0.1%</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="dohod" class="prog-tabs-body">
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                      <tr><th>Сумма</th>
+                      <th>от 6 мес.<br>до 1 года</th>
+                      <th>от 1 года<br>до 2 лет</th>
+                      <th>от 2 года<br>до 3 лет</th>
+                    </tr></thead>
+                    <tbody>
+                      <tr>
+                        <td>от 1 000 000 ₽</td>
+                        <td>13.5%</td>
+                        <td>14%</td>
+                        <td>14.5%</td>
+                      </tr>
+                      <tr>
+                        <td>от 2 до 3 млн. ₽</td>
+                        <td>13.5%</td>
+                        <td>15.5%</td>
+                        <td>16%</td>
+                      </tr>
+                      <tr>
+                        <td>от 3 и выше млн. ₽</td>
+                        <td>13.5%</td>
+                        <td>15.5%</td>
+                        <td>18%</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table>
+                <thead>
+                  <tr><th colspan="2">Условия программы</th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Выплата процентов</td>
+                    <td>ежемесячно, либо в конце срока</td>
+                  </tr>
+                  <tr>
+                    <td>Пополнение</td>
+                    <td>да, от 500 000 ₽</td>
+                  </tr>
+                  <tr>
+                    <td>Капитализация</td>
+                    <td>да, в конце срока</td>
+                  </tr>
+                  <tr>
+                    <td>Досрочное расторжение</td>
+                    <td>да, по ставке 0.1%</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="bottom-part-popup">
+        <h2>Ответим на любые вопросы</h2>
+        <p>Оставьте телефон - наш специалист свяжется с вами в ближайшее время, поможет подобрать программу сбережений и ответит на все вопросы</p>
+        <form id="validPop2" action="#">
+            <div class="new-flex-wrp">
+                <!-- <div class="input-style">
+                    <input class="input-form input-valid" type="text" data-input="name" name="name" placeholder="Имя*">
+                    <p class="input-error">Ошибка ввода</p>
+                </div> -->
+                <div class="input-style">
+                    <input class="input-form input-valid mask-phone" type="tel" data-input="phone" name="phone" placeholder="Номер телефона*">
+                    <p class="input-error">Ошибка ввода</p>
+                </div>
+                <input class="form-btn" type="submit" name="" value="Отправить заявку">
+            </div>
+            <p>Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с <a href="/policy">Пользовательским соглашением </a></p>
+
+            <!-- <label class="checkbox">
+                <input class="checkbox-check" type="checkbox">
+                <div class="checkbox__text">Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с <a href="/policy">Пользовательским соглашением </a></div>
+            </label> -->
+
+        </form>
     </div>
     <div class="pop-up-general-block-close-btn"></div>
 </div>
-<div id="reorder" class="pop-up-general-block">
-    <div class="data-popup-wrp">
-        <p class="popup-title">ЗАКАЗ №00002</p>
-        <p class="data-popup">01.02.2020</p>
-    </div>
-    <table>
-        <tbody>
-            <tr>
-                <th>Название товара</th>
-                <th>Цена</th>
-                <th>Кол-во</th>
-                <th>Итого</th>
-            </tr>
-            <tr>
-                <td>Beyond Burger, <span class="color-gray">350 г</span></td>
-                <td>200 грн</td>
-                <td>2</td>
-                <td>400 грн</td>
-            </tr>
-            <tr>
-                <td>Beyond Salat, <span class="color-gray">350 г</span></td>
-                <td>200 грн</td>
-                <td>1</td>
-                <td>200 грн</td>
-            </tr>
-            <tr>
-                <td>Напиток Coca-Cola, <span class="color-gray">0,5 л</span></td>
-                <td>20 грн</td>
-                <td>2</td>
-                <td>40 грн</td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="total-popup-line">
-        <div class="total-popup-btn">Перезаказать</div>
-        <ul class="total-popup">
-            <li>
-                <p>Итого</p>
-                <p>640 грн</p>
-            </li>
-            <li>
-                <p>Доставка</p>
-                <p>0 грн</p>
-            </li>
-        </ul>
-    </div>
+
+<div id="thnx" class="pop-up-general-block thnx">
+    <h2>Спасибо!</h2>
+    <p>Наш консультант свяжется с вами <br>в ближайшее время</p>
+    <a href="/" class="form-btn">Вернуться на главную</a>
     <div class="pop-up-general-block-close-btn"></div>
 </div>
 
@@ -463,12 +587,15 @@
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <script src="../../build/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=3607fc15-d35a-4f29-b7a9-b8cb92c549de" type="text/javascript"></script>
+
     <script src="https://unpkg.com/vh-check/dist/vh-check.min.js"></script>
     <script src="../../build/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="../../build/js/selectize.js"></script>
     <script src="../../build/js/jquery.maskedinput.min.js"></script>
     <script src="../../build/js/pagination.js"></script>
     <script src="../../build/js/main.js"></script>
+    <script src="../../build/js/map.js"></script>
     <script src="../../build/js/calc.js"></script>
     <script>
         // Input style for section Aside
