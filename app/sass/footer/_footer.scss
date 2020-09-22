@@ -1,10 +1,83 @@
-.footer-top {
-    padding-top: 79px;
-    padding-bottom: 51px;
+footer {
     background-color: #434343;
+    padding: 112px 0 72px;
+    color: #ffffff;
+    .col-lg-4 {
+        padding-right: 30px;
+    }
+    .col-lg-3 {
+        &:last-child .footer-subtitle {
+            opacity: 0;
+        }
+    }
+}
+.footer-address {
+    &:first-child {
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+    &:last-child {
+        display: flex;
+        align-items: flex-start;
+        img {
+            width: 12px;
+            margin-right: 7px;
+            margin-top: 2px;
+        }
+        span {
+            opacity: .8;
+        }
+    }
+}
+.footer-subtitle {
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+.footer-logo {
+    margin: 30px 0;
+    width: 250px;
+}
+.footer-phone {
+    margin-top: 40px;
+    font-size: 30px;
+    font-weight: 700;
+    color: #62C6FF;
 }
 .footer-list {
+    li {
+        padding: 10px 0;
+        a {
+            display: inline-block;
+            position: relative;
+            opacity: .8;
+            transition: opacity ease 0.3s;
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 1px;
+                width: 100%;
+                background-color: #fff;
+                opacity: 0;
+                transition: opacity ease 0.3s;
+            }
+            &:hover {
+                opacity: 1;
+                &::after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+.footer-list-acc {
+    margin-top: 35px;
     display: flex;
+    justify-content: flex-end;
     li {
         img {
             width: 24px;
@@ -12,11 +85,24 @@
         & + li {
             margin-left: 24px;
         }
-        a {
-            &:hover {
-                img {
-                    filter: brightness(0) saturate(100%) invert(100%) sepia(44%) saturate(2%) hue-rotate(194deg) brightness(109%) contrast(101%);
-                }
+    }
+}
+@media (max-width: 767px) {
+    .footer-list-acc {
+        justify-content: center;
+    }
+    footer {
+        padding: 112px 0 62px;
+        color: #ffffff;
+        .col-lg-4 {
+            padding-right: 0px;
+        }
+        .col-lg-2 {
+            margin: 50px 0 35px;
+        }
+        .col-lg-3 {
+            &:last-child .footer-subtitle {
+                display: none;
             }
         }
     }
